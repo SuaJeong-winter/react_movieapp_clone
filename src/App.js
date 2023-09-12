@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  //로딩 상태를 구분해주는 변수 isLoading state
+  state = {
+    isLoading : true,
+  };
+
+  // 컴포넌트가 처음 화면에 그려지는 실행되는 함수 componentDidMount()
+  // 화면에 처음 시작에는 isLoading의 상태가 false였다가 6초(6000)이후 true로 state가 변경됨
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({isLoading:false});
+    },6000);
+  }
+
+
+  render() {
+    const {isLoading} = this.state;
+    return <div>{isLoading? 'Loading...': 'We are ready'}</div>;   //삼항 연산자 true일때는 왼쪽, false 일때는 오른쪽
+  }  
+
 }
 
 export default App;
