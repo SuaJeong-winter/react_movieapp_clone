@@ -1,25 +1,30 @@
 import React from "react";
+// import Home from "./routes/Home";
+import './App.css';
+// import { HashRouter, BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import {Routes, Route } from "react-router-dom";
+import About from './routes/About';
+import Home from "./routes/Home";
+import Navigation from "./components/Navigation";
+import Detail from "./routes/Datail";
 
-class App extends React.Component {
-  //로딩 상태를 구분해주는 변수 isLoading state
-  state = {
-    isLoading : true,
-  };
-
-  // 컴포넌트가 처음 화면에 그려지는 실행되는 함수 componentDidMount()
-  // 화면에 처음 시작에는 isLoading의 상태가 false였다가 6초(6000)이후 true로 state가 변경됨
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading:false});
-    },6000);
-  }
-
-
-  render() {
-    const {isLoading} = this.state;
-    return <div>{isLoading? 'Loading...': 'We are ready'}</div>;   //삼항 연산자 true일때는 왼쪽, false 일때는 오른쪽
-  }  
-
+function App() {
+  return (
+    // <HashRouter>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" exact={true} element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/movie-detail" element={<Detail />} /> */}
+      </Routes>
+    </Router>
+    // </HashRouter>
+  );
 }
 
 export default App;
+
+// React Router v6에서는 Route가 항상 Routes안에 있어야 한다 
+// React Router v6에서는 element 속성을 사용하여 컴포넌트를 렌더링해야 합니다. 따라서 다음과 같이 코드를 수정해야 합니다:
